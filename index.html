@@ -3,126 +3,590 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pristine Pawz Grooming | Surrey, BC</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Pet Spa & Grooming Landing Page</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Passion+One:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES (Your Color Palette) --- */
+        :root {
+            --primary: #6b5c96;       /* Deep Purple */
+            --secondary: #d9cae4;     /* Lilac/Light Purple */
+            --background: #f7f1e8;    /* Off-white/Beige */
+            --accent: #fad5e2;        /* Light Pink */
+            --neutral: #262626;       /* Dark Gray/Black */
+            --white: #ffffff;
+            
+            /* Font Settings */
+            --font-heading: 'Passion One', sans-serif;
+            --font-body: 'Nunito', sans-serif;
+        }
+
+        /* --- GLOBAL RESET & TYPOGRAPHY --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--background);
+            color: var(--neutral);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            line-height: 1.1;
+            color: var(--primary);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            border-radius: 20px;
+        }
+
+        /* --- UTILITY CLASSES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center { text-align: center; }
+        .text-primary { color: var(--primary); }
+        .text-accent { color: #d47ea6; /* Slightly darker version of accent for text visibility */ }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: var(--background);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background-color: var(--accent);
+            color: var(--neutral);
+            border-color: var(--accent);
+        }
+
+        .nav-cta:hover {
+            color: var(--neutral);
+            background-color: transparent;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 100px 20px;
+            text-align: center;
+            background-color: var(--background);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .hero h1 span {
+            color: var(--secondary); /* Using secondary for contrast word */
+            -webkit-text-stroke: 2px var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            color: var(--neutral);
+        }
+
+        .hero-images {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .hero-img-card {
+            width: 200px;
+            height: 250px;
+            background-color: var(--secondary);
+            border-radius: 170px; /* Pill shape */
+            overflow: hidden;
+            border: 4px solid var(--neutral);
+        }
+        
+        .hero-img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services {
+            background-color: var(--white);
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 4rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--background);
+            border-radius: 30px;
+            padding: 40px;
+            transition: transform 0.3s;
+            border: 2px solid var(--secondary);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background-color: var(--accent);
+        }
+
+        .service-card h3 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- WHY US (FEATURES) --- */
+        .features {
+            background-color: var(--secondary); /* Secondary background */
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .feature-text h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .stats-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+        }
+        
+        .stat-card.accent-bg {
+            background-color: var(--background);
+            color: var(--primary);
+        }
+
+        .stat-card h3 {
+            color: inherit;
+            font-size: 3rem;
+        }
+
+        /* --- TESTIMONIALS (Ticker) --- */
+        .testimonials {
+            background-color: var(--background);
+            overflow: hidden;
+        }
+
+        .ticker-wrapper {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: scroll 20s linear infinite;
+        }
+
+        .review-card {
+            width: 350px;
+            background-color: var(--primary);
+            color: white;
+            padding: 30px;
+            border-radius: 30px;
+            flex-shrink: 0;
+        }
+        
+        .review-card.alt {
+            background-color: var(--secondary);
+            color: var(--neutral);
+        }
+
+        .review-card h4 {
+            color: inherit;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 80px 20px;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            color: var(--accent);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--white);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Simplified for demo */
+            .navbar { padding: 15px 20px; }
+        }
+    </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">Pristine Pawz<i class="fas fa-paw" style="font-size: 0.8em; margin-left: 5px;"></i></a>
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact" class="nav-btn">Book Appointment</a></li>
-            </ul>
-        </div>
+        <div class="logo">BORK!</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <a href="#" class="btn nav-cta">Call Us</a>
     </nav>
 
-    <header id="home" class="hero">
-        <div class="container hero-container">
-            <div class="hero-text">
-                <h1>Clean, Calm, and Consistent Care</h1>
-                <p>We provide a relaxed grooming experience, combining premium standards with a warm, friendly environment. Trusted care for every paw.</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Book Now</a>
-                    <a href="#about" class="btn btn-secondary">Our Story</a>
-                </div>
+    <section class="hero">
+        <div class="container">
+            <div style="margin-bottom: 20px; color: var(--secondary); font-weight: bold; letter-spacing: 2px;">
+                ✦ THANK YOU FOR VISITING ✦
             </div>
-            <div class="hero-image">
-                <img src="https://placehold.co/600x500/d9cae4/6b5c96?text=Pristine+Pawz+Spa" alt="Happy Dog at Pristine Pawz">
+            
+            <h1>The Best Pet Spa For Your <br><span>Best Friend</span></h1>
+            
+            <p>Gentle hands, happy tails, and purrs of approval—every visit, every time. We treat your pets like royalty.</p>
+            
+            <a href="#" class="btn">Book Now</a>
+
+            <div class="hero-images">
+                <div class="hero-img-card" style="background-color: var(--primary);"></div>
+                <div class="hero-img-card" style="height: 300px; width: 250px; margin-top: -30px; background-image: url('https://placehold.co/400x500/d9cae4/6b5c96?text=Happy+Dog'); background-size: cover;"></div>
+                <div class="hero-img-card" style="background-color: var(--accent);"></div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <section id="about" class="why-us">
+    <section class="services section-padding">
         <div class="container">
-            <div class="section-header">
-                <h2>More Than Just Appearance</h2>
-                <p>We believe in safety, patience, and creating a relaxed experience for every pet.</p>
+            <div class="section-header text-center">
+                <p style="color: var(--neutral); font-weight: bold; margin-bottom: 10px;">OUR SERVICES</p>
+                <h2><span class="text-accent">Paws</span> and Pampering</h2>
             </div>
+
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Dog Grooming</h3>
+                    <p>Full spa treatment including bath, brush, haircut, and nail trim tailored to your dog's breed and style.</p>
+                    <br>
+                    <a href="#" style="text-decoration: underline; font-weight: bold; color: var(--primary)">Read More</a>
+                </div>
+                <div class="service-card" style="background-color: var(--secondary);">
+                    <h3>Cat Grooming</h3>
+                    <p>Gentle and stress-free grooming for your feline friends. We handle them with care and patience.</p>
+                    <br>
+                    <a href="#" style="text-decoration: underline; font-weight: bold; color: var(--primary)">Read More</a>
+                </div>
+                <div class="service-card">
+                    <h3>Add-Ons</h3>
+                    <p>Teeth cleaning, de-shedding treatments, and blueberry facials for that extra touch of luxury.</p>
+                    <br>
+                    <a href="#" style="text-decoration: underline; font-weight: bold; color: var(--primary)">Read More</a>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 50px;">
+                <a href="#" class="btn">View All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features section-padding">
+        <div class="container">
             <div class="features-grid">
-                <div class="feature-item">
-                    <i class="fas fa-shield-heart"></i>
-                    <h3>Trusted Care</h3>
-                    <p>A neighborhood studio known for providing clean and consistent care for dogs of all breeds.</p>
+                <div>
+                    <p style="font-weight: bold; margin-bottom: 10px;">WHY US?</p>
+                    <h2 style="font-size: 3.5rem; margin-bottom: 40px; color: var(--primary);">Purr-fection Starts Here</h2>
+                    
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">01</div>
+                            <div class="feature-text">
+                                <h3>Grooming Excellence</h3>
+                                <p>Our team brings passion and perfection to every pampering session.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon" style="background-color: var(--background); color: var(--primary);">02</div>
+                            <div class="feature-text">
+                                <h3>Hygienic & Safe</h3>
+                                <p>We adhere to strict hygiene standards providing a clean environment.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">03</div>
+                            <div class="feature-text">
+                                <h3>Stress-Free Zone</h3>
+                                <p>Calming environment and experienced staff create a relaxed atmosphere.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-item">
-                    <i class="fas fa-hand-holding-heart"></i>
-                    <h3>Genuine Attention</h3>
-                    <p>We value professionalism and comfort, ensuring even anxious pets feel loved and secure.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-sparkles"></i>
-                    <h3>Pristine Quality</h3>
-                    <p>Our approach combines premium standards with strict hygiene to ensure your pet leaves refreshed.</p>
+
+                <div class="stats-container">
+                    <div style="height: 200px; background-color: var(--accent); border-radius: 30px;"></div>
+                    
+                    <div class="stat-card">
+                        <h3>Since 2020</h3>
+                        <p>Trusted since 2020, we bring years of love to every pet.</p>
+                    </div>
+                    <div class="stat-card accent-bg">
+                        <h3>2500+ Happy Paws</h3>
+                        <p>Over 1000 pets join the joy with our makeovers each year.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="services">
+    <section class="testimonials section-padding">
+        <div class="text-center" style="margin-bottom: 50px;">
+            <h2>Paw-some Praise</h2>
+            <p>Pet Parents Share the Love!</p>
+        </div>
+
+        <div class="ticker-wrapper">
+            <div class="review-card">
+                <h4>Fantastic Grooming</h4>
+                <p>"Best trim my dog has ever had. The staff is so kind and thoughtful!"</p>
+                <br>
+                <p><strong>- Sarah J.</strong></p>
+            </div>
+            <div class="review-card alt">
+                <h4>Caring Team</h4>
+                <p>"My cat is usually anxious but she loved it here. Highly recommend!"</p>
+                <br>
+                <p><strong>- Mike T.</strong></p>
+            </div>
+            <div class="review-card">
+                <h4>Great Value</h4>
+                <p>"Fair prices and excellent service. We will definitely be back."</p>
+                <br>
+                <p><strong>- Jessica L.</strong></p>
+            </div>
+            <div class="review-card alt">
+                <h4>Amazing Results</h4>
+                <p>"Bork removed all the mats and my poodle looks like a show dog!"</p>
+                <br>
+                <p><strong>- Alex R.</strong></p>
+            </div>
+             <div class="review-card">
+                <h4>Fantastic Grooming</h4>
+                <p>"Best trim my dog has ever had. The staff is so kind and thoughtful!"</p>
+                <br>
+                <p><strong>- Sarah J.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background-color: var(--secondary);">
+        <div class="container text-center">
+            <h2 style="color: var(--primary);">Explore Our <span style="color: var(--white);">AWWdorable</span> Gallery</h2>
+            <br>
+            <div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 20px;">
+                <div style="min-width: 300px; height: 400px; background: var(--white); border-radius: 40px; border: 5px solid var(--white);">
+                    <img src="https://placehold.co/300x400/6b5c96/ffffff?text=Cute+Pup" style="width: 100%; height: 100%; object-fit: cover; border-radius: 35px;">
+                </div>
+                <div style="min-width: 300px; height: 400px; background: var(--white); border-radius: 40px; border: 5px solid var(--white);">
+                    <img src="https://placehold.co/300x400/fad5e2/6b5c96?text=Fluffy+Cat" style="width: 100%; height: 100%; object-fit: cover; border-radius: 35px;">
+                </div>
+                <div style="min-width: 300px; height: 400px; background: var(--white); border-radius: 40px; border: 5px solid var(--white);">
+                    <img src="https://placehold.co/300x400/262626/ffffff?text=Happy+Dog" style="width: 100%; height: 100%; object-fit: cover; border-radius: 35px;">
+                </div>
+            </div>
+            <br>
+            <a href="#" class="btn" style="background-color: var(--neutral); border-color: var(--neutral);">Browse Gallery</a>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background-color: var(--background);">
         <div class="container">
-            <div class="section-header">
-                <h2>Our Services</h2>
-                <p>Full-service grooming delivered with a gentle touch.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-cut"></i>
-                    <h3>Full Grooming</h3>
-                    <p>Includes bath, haircut, and styling tailored to your breed's specific needs.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-bath"></i>
-                    <h3>Bath & Tidy</h3>
-                    <p>A refreshing bath and light trim to keep your pet looking pristine between grooms.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-magic"></i>
-                    <h3>Puppy Intro</h3>
-                    <p>A gentle first experience to build trust and confidence for a lifetime of grooming.</p>
-                </div>
+            <div style="background-color: var(--accent); border-radius: 50px; padding: 60px; text-align: center; position: relative; overflow: hidden;">
+                <h2 style="position: relative; z-index: 2;">Let the Cuteness Begin!</h2>
+                <p style="max-width: 600px; margin: 20px auto; position: relative; z-index: 2;">Ready to treat your pet to a paw-dorable experience? Click the button below to embark on a journey of fluff!</p>
+                <a href="#" class="btn" style="background-color: var(--primary); position: relative; z-index: 2;">Book Appointment</a>
             </div>
         </div>
     </section>
 
-    <footer id="contact">
+    <footer>
         <div class="container footer-grid">
-            <div class="footer-info">
-                <h3>Pristine Pawz</h3>
-                <p>Delivering trusted care for every paw. We are a fear-free, safety-first grooming studio in Surrey.</p>
+            <div class="footer-col">
+                <h4>BORK!</h4>
+                <p>One-to-one, fear-free pet grooming studio. Gentle handling and premium products.</p>
             </div>
-            <div class="footer-contact">
-                <h4>Visit Us</h4>
-                <p><i class="fas fa-map-marker-alt"></i> 103-8434 120 Street, Surrey, BC, V3W7S2</p>
-                <p><i class="fas fa-phone"></i> +1 (604) 503-3439</p>
-                <p><i class="fas fa-envelope"></i> info@pristinepawzgrooming.ca</p>
+            <div class="footer-col">
+                <h4>Address</h4>
+                <p>123 Pet Street,<br>Surrey, BC</p>
+                <br>
+                <h4>Hotline</h4>
+                <p>+1 604 123 4567</p>
             </div>
-            <div class="footer-hours">
+            <div class="footer-col">
+                <h4>Navigate</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
                 <h4>Hours</h4>
-                <p>Mon - Sun: 10:00 AM - 6:00 PM</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                </div>
+                <p>Mon - Fri: 9am - 8pm</p>
+                <p>Sat - Sun: 10am - 6pm</p>
             </div>
         </div>
-        <div class="copyright">
-            <p>&copy; 2026 Pristine Pawz Grooming. All rights reserved.</p>
+        <div class="text-center" style="margin-top: 50px; opacity: 0.7;">
+            &copy; 2024 Bork Grooming Replica. All rights reserved.
         </div>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>
